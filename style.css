@@ -1,0 +1,341 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f0f0f0;
+    background-image: url('https://via.placeholder.com/1200x800');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #e53935;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.battle-screen {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.player-area, .npc-area {
+    width: 45%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(240, 240, 240, 0.7);
+}
+
+.pokemon-image {
+    width: 150px;
+    height: 150px;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.health-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.health-bar-fill {
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.battle-log {
+    min-height: 150px;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.log-entry {
+    margin-bottom: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.skill-selection {
+    display: flex;
+    flex-direction: column;
+}
+
+.select-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.skill-card {
+    width: calc(20% - 15px);
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #d0d0d0;
+}
+
+.skill-card.selected {
+    background-color: #bbdefb;
+    border: 2px solid #2196f3;
+}
+
+.skill-card.fire { background-color: #ffcdd2; }
+.skill-card.electric { background-color: #fff9c4; }
+.skill-card.water { background-color: #bbdefb; }
+.skill-card.grass { background-color: #c8e6c9; }
+.skill-card.normal { background-color: #e0e0e0; }
+
+.skill-card.fire.selected { border-color: #e53935; }
+.skill-card.electric.selected { border-color: #fdd835; }
+.skill-card.water.selected { border-color: #2196f3; }
+.skill-card.grass.selected { border-color: #43a047; }
+.skill-card.normal.selected { border-color: #757575; }
+
+.skill-card img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.skill-card h3 {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.skill-stats {
+    font-size: 0.8em;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2196f3;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: #1976d2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-start {
+    background-color: #43a047;
+}
+
+.btn-start:hover {
+    background-color: #388e3c;
+}
+
+.btn-attack {
+    background-color: #e53935;
+}
+
+.btn-attack:hover {
+    background-color: #d32f2f;
+}
+
+.battle-controls {
+    display: none;
+}
+
+.battle-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.selected-skills {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.selected-skill {
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.selected-skill:hover {
+    transform: translateY(-3px);
+}
+
+.selected-skill.fire { background-color: #ffcdd2; }
+.selected-skill.electric { background-color: #fff9c4; }
+.selected-skill.water { background-color: #bbdefb; }
+.selected-skill.grass { background-color: #c8e6c9; }
+.selected-skill.normal { background-color: #e0e0e0; }
+
+.game-over {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.victory-message, .defeat-message {
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.victory-message {
+    color: #43a047;
+}
+
+.defeat-message {
+    color: #e53935;
+}
+
+.btn-play-again {
+    background-color: #673ab7;
+}
+
+.btn-play-again:hover {
+    background-color: #5e35b1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .battle-screen {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .player-area, .npc-area {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .skills-container {
+        justify-content: center;
+    }
+    
+    .skill-card {
+        width: calc(45% - 10px);
+        margin-bottom: 10px;
+    }
+}

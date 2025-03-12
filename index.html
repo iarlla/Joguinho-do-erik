@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha Pokémon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BATALHA POKÉMON</h1>
+        </header>
+        
+        <div class="game-area">
+            <!-- Tela de Configuração -->
+            <div id="setup-screen">
+                <h2 class="select-title">Qual é o nome do seu Pokémon?</h2>
+                <input type="text" id="player-name" placeholder="Digite o nome..." class="form-control">
+                
+                <h2 class="select-title">Escolha 3 habilidades para seu Pokémon:</h2>
+                <div class="skills-container">
+                    <div class="skill-card fire" data-id="0">
+                        <img src="img/69kib-375x360-fire-pokemon-fire-energy-11562907671ukkqpconnm.png" alt="Lança-Chamas">
+                        <h3>Lança-Chamas</h3>
+                        <p>Um poderoso jato de fogo</p>
+                        <div class="skill-stats">
+                            <span>Dano: 40</span>
+                            <span>Precisão: 85%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card electric" data-id="1">
+                        <img src="img/OIP.jpeg" alt="Choque do Trovão">
+                        <h3>Choque do Trovão</h3>
+                        <p>Um ataque elétrico potente</p>
+                        <div class="skill-stats">
+                            <span>Dano: 35</span>
+                            <span>Precisão: 90%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card water" data-id="2">
+                        <img src="img/R.jpeg" alt="Jato D'água">
+                        <h3>Jato D'água</h3>
+                        <p>Um forte jato de água</p>
+                        <div class="skill-stats">
+                            <span>Dano: 30</span>
+                            <span>Precisão: 100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card grass" data-id="3">
+                        <img src="img/FeY8BiAWQAAqqJC.jpeg" alt="Raio Solar">
+                        <h3>Raio Solar</h3>
+                        <p>Um poderoso raio de energia solar</p>
+                        <div class="skill-stats">
+                            <span>Dano: 50</span>
+                            <span>Precisão: 70%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card normal" data-id="4">
+                        <img src="img/OIP (1).jpeg" alt="Investida">
+                        <h3>Investida</h3>
+                        <p>Um ataque físico básico</p>
+                        <div class="skill-stats">
+                            <span>Dano: 25</span>
+                            <span>Precisão: 95%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="selected-count" style="text-align: center; margin-bottom: 15px; font-weight: bold;">
+                    Habilidades selecionadas: 0/3
+                </div>
+                
+                <div class="btn-container">
+                    <button id="btn-start" class="btn btn-start" disabled>Iniciar Batalha</button>
+                </div>
+            </div>
+            
+            <!-- Tela de Batalha (inicialmente oculta) -->
+            <div id="battle-screen" style="display: none;">
+                <div class="battle-screen">
+                    <div class="player-area">
+                        <h2 id="player-pokemon-name">Seu Pokémon</h2>
+                        <div class="pokemon-image" style="background-image: url('img/shiny_magikarp___splash_by_ishmam-d6zij5o.jpeg');"></div>
+                        <div class="health-bar">
+                            <div id="player-health" class="health-bar-fill" style="width: 100%;"></div>
+                        </div>
+                        <div id="player-hp-text">100/100 HP</div>
+                    </div>
+                    
+                    <div class="npc-area">
+                        <h2>Rival</h2>
+                        <div class="pokemon-image" style="background-image: url('img/384Rayquaza.jpeg');"></div>
+                        <div class="health-bar">
+                            <div id="npc-health" class="health-bar-fill" style="width: 100%;"></div>
+                        </div>
+                        <div id="npc-hp-text">100/100 HP</div>
+                    </div>
+                </div>
+                
+                <div class="battle-log" id="battle-log">
+                    <div class="log-entry">A batalha vai começar!</div>
+                </div>
+                
+                <div class="battle-controls">
+                    <h3>Escolha seu ataque:</h3>
+                    <div class="selected-skills" id="selected-skills">
+                        <!-- Habilidades selecionadas aparecerão aqui -->
+                    </div>
+                    
+                    <div class="battle-actions">
+                        <button id="btn-attack" class="btn btn-attack">Atacar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tela de Game Over (inicialmente oculta) -->
+            <div id="game-over" class="game-over">
+                <div id="victory-message" class="victory-message" style="display: none;">
+                    Vitória! Você derrotou seu rival!
+                </div>
+                <div id="defeat-message" class="defeat-message" style="display: none;">
+                    Derrota! Seu Pokémon foi vencido!
+                </div>
+                <div class="btn-container">
+                    <button id="btn-play-again" class="btn btn-play-again">Jogar Novamente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para detalhes da habilidade -->
+    <div id="skill-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-skill-name">Nome da Habilidade</h2>
+            <p id="modal-skill-desc">Descrição da habilidade</p>
+            <div class="skill-stats" id="modal-skill-stats">
+                <span>Dano: 0</span>
+                <span>Precisão: 0%</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Inclua o script JavaScript -->
+    <script src="jogo.js"></script>
+</body>
+</html>
